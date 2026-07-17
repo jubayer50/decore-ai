@@ -1,5 +1,6 @@
 import { Lato, Playfair } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/Components/Navbar";
 
 const lato = Lato({
   weight: "400",
@@ -24,6 +25,9 @@ export default function RootLayout({ children }) {
       className={`${lato.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="lato min-h-full flex flex-col">
+
+        <Navbar></Navbar>
+
         <main className="flex-1">{children}</main>
       </body>
     </html>
