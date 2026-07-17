@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
     >
       <body className="lato min-h-full flex flex-col">
 
-        <Navbar></Navbar>
+      
 
         <main className="flex-1">{children}</main>
       </body>

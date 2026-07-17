@@ -84,7 +84,7 @@ const Banner = () => {
                             radius="full"
                             size="lg"
                             endContent={<FaWandMagicSparkles />}
-                            className="bg-[#b2967d] text-white"
+                            className="bg-[#b2967d] rounded-md text-white"
                         >
                             Generate Design
                         </Button>
@@ -94,7 +94,7 @@ const Banner = () => {
                             size="lg"
                             variant="bordered"
                             endContent={<FaArrowRight />}
-                            className="border-white text-white hover:bg-white hover:text-black"
+                            className="border-white text-white rounded-md hover:bg-white hover:text-black"
                         >
                             Explore Rooms
                         </Button>
