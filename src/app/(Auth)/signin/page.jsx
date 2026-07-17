@@ -26,7 +26,7 @@ const SignIn = () => {
         <section className="relative h-screen overflow-hidden">
             {/* Background */}
             <Image
-                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=2000&q=80"
+                src="https://images.unsplash.com/photo-1664711942326-2c3351e215e6"
                 alt="Interior Design"
                 fill
                 priority
@@ -34,10 +34,10 @@ const SignIn = () => {
             />
 
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-black/55" />
 
             {/* Content */}
-            <div className="relative z-10 flex h-screen items-center justify-end px-3 lg:px-24">
+            <div className="relative max-w-330 mx-auto z-10 flex h-screen items-center justify-end px-3">
                 <div className="w-full max-w-md rounded-md border border-white/20 bg-white/70 p-10 shadow backdrop-blur-md">
                     {/* Title */}
                     <h1 className="text-3xl font-bold text-gray-900">

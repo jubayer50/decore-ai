@@ -95,20 +95,21 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex lato items-center space-x-3">
+              <Link href={'/signin'}>
               <Button
-                as={Link}
-                href="/signin"
                 className="px-4 py-2 lato text-white bg-[#b2967d] rounded-md hover:bg-[#b2967d]/90 transition-colors shadow-sm min-w-0 h-auto font-medium"
               >
                 Sign In
               </Button>
+              </Link>
+
+              <Link href={'/signup'}>
               <Button
-                as={Link}
-                href="/signup"
                 className="px-4 py-2 lato text-white bg-[#b2967d] rounded-md hover:bg-[#b2967d]/90 transition-colors shadow-sm min-w-0 h-auto font-medium"
               >
                 Sign Up
               </Button>
+              </Link>
             </div>
           )}
         </div>
@@ -195,9 +196,8 @@ export default function Navbar() {
                   )}
                   <span className="text-sm font-medium text-slate-700">{userProfile?.name || "User"}</span>
                 </div>
+
                 <Button
-                  as={Link}
-                  href="/logout"
                   className="px-4 py-2 lato text-white bg-[#b2967d] rounded-md hover:bg-[#b2967d]/90 transition-colors shadow-sm text-xs min-w-0 h-auto font-medium"
                 >
                   Logout
@@ -205,20 +205,21 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex flex-col space-y-2">
+               <Link href="/signin">
                 <Button
-                  as={Link}
-                  href="/signin"
                   className="w-full text-center px-4 py-2 lato text-white bg-[#b2967d] rounded-md hover:bg-[#b2967d]/90 transition-colors shadow-sm h-auto font-medium"
                 >
                   Sign In
                 </Button>
+               </Link>
+
+                <Link href="/signup">
                 <Button
-                  as={Link}
-                  href="/signup"
                   className="w-full text-center px-4 py-2 lato text-white bg-[#b2967d] rounded-md hover:bg-[#b2967d]/90 transition-colors shadow-sm h-auto font-medium"
                 >
                   Sign Up
                 </Button>
+                </Link>
               </div>
             )}
           </div>

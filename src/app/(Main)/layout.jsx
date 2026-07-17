@@ -1,13 +1,18 @@
+import Footer from '@/Components/Footer/Footer'
 import Navbar from '@/Components/Navbar/Navbar'
 
 
 const MainLayout = ({children}) => {
   return (
-    <main className="">
+    <div className="">
         <Navbar />
+
+        <div>
         {children}
+        </div>
         
-    </main>
+        <Footer></Footer>
+    </div>
   )
 }
 

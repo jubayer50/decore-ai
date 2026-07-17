@@ -33,10 +33,10 @@ const SignUp = () => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/55" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-end px-3 lg:px-24">
+      <div className="relative max-w-330 mx-auto z-10 flex min-h-screen items-center justify-end px-3 py-10">
         <div className="w-full max-w-md rounded-md border border-white/20 bg-white/70 p-10 shadow backdrop-blur-md">
           {/* Title */}
           <h1 className="text-3xl font-bold text-gray-900">
