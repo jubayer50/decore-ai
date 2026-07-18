@@ -24,7 +24,7 @@ const AiChatHistoryPage = async () => {
             </p>
           </div>
         ) : (
-          <div className="max-w-3xl mx-auto border p-4 md:p-8 rounded-lg h-[70vh] overflow-auto">
+          <div className="max-w-3xl mx-auto border shadow p-4 md:p-8 rounded-lg h-[70vh] overflow-auto mb-8">
             {aiResponseByUserId.map((response) => (
               <div key={response._id} className="rounded-md">
                 <p className="mt-10 bg-gray-200 rounded-md px-4 py-1.5">
