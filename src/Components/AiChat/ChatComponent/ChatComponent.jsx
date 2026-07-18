@@ -3,6 +3,8 @@
 
 import { postAiChat } from "@/lib/Action/aiChat";
 import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import Link from "next/link";
 import { useState } from "react";
 
 const ChatComponent = ({ aiResponseByUserId }) => {
@@ -46,11 +48,24 @@ const ChatComponent = ({ aiResponseByUserId }) => {
     <div className="max-w-3xl mx-auto py-8">
       <div className="bg-white rounded-lg shadow border overflow-hidden">
         {/* Header */}
-        <div className="bg-primary p-4">
-          <h2 className="text-xl font-bold">AI Chat Assistant</h2>
-          <p className="text-sm opacity-80">
-            Ask me anything about interior design
-          </p>
+        <div className="flex items-center justify-between p-4">
+          <div className="bg-primary">
+            <h2 className="text-xl font-bold">AI Chat Assistant</h2>
+            <p className="text-sm opacity-80">
+              Ask me anything about interior design
+            </p>
+          </div>
+
+          <div>
+            <Link href={"/ai-chat/ai-chat-history"}>
+              <Button
+                size="sm"
+                className={"rounded-md bg-gray-200 text-black font-medium"}
+              >
+                History
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Messages Area */}
