@@ -35,7 +35,6 @@ const ChatComponent = ({ aiResponseByUserId }) => {
     try {
       // API Call
       const result = await postAiChat(aiData);
-      console.log(result);
     } catch (error) {
       console.error("Error:", error);
     } finally {
