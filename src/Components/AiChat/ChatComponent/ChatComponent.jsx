@@ -50,8 +50,8 @@ const ChatComponent = ({ aiResponseByUserId }) => {
         {/* Header */}
         <div className="flex items-center justify-between p-4">
           <div className="bg-primary">
-            <h2 className="text-xl font-bold">AI Chat Assistant</h2>
-            <p className="text-sm opacity-80">
+            <h2 className="text-2xl font-bold">AI Chat Assistant</h2>
+            <p className="playfair opacity-80 text-lg">
               Ask me anything about interior design
             </p>
           </div>
