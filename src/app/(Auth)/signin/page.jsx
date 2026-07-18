@@ -34,6 +34,12 @@ const SignIn = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <section className="relative h-screen overflow-hidden">
       {/* Background */}
@@ -134,7 +140,10 @@ const SignIn = () => {
           </div>
 
           {/* Google */}
-          <Button className="w-full rounded-md bg-transparent border border-[#b2967d] text-gray-900 font-medium mt-5">
+          <Button
+            onClick={handleGoogleSignIn}
+            className="w-full rounded-md bg-transparent border border-[#b2967d] text-gray-900 font-medium mt-5"
+          >
             <FcGoogle className="w-5 h-5"></FcGoogle> Continue with Google
           </Button>
 
