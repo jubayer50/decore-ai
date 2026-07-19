@@ -1,8 +1,14 @@
+import FilterSection from "@/Components/InteriorDesigns/FilterSection/FilterSection";
 import InteriorCard from "@/Components/InteriorDesigns/InteriorCard/InteriorCard";
 import { getInteriorDesigns } from "@/lib/api/getInteriorDesign";
 
-const InteriorDesignPage = async () => {
-  const interiorDesigns = await getInteriorDesigns();
+const InteriorDesignPage = async ({ searchParams }) => {
+  const searchParam = await searchParams;
+
+  const filtersQuery = new URLSearchParams(searchParam);
+  const filters = filtersQuery.toString();
+
+  const interiorDesigns = await getInteriorDesigns(filters);
 
   return (
     <div className="max-w-330 mx-auto my-10 px-3">
@@ -12,6 +18,10 @@ const InteriorDesignPage = async () => {
           Browse professionally crafted interior design ideas by category,
           style, budget, and space.
         </p>
+      </div>
+
+      <div className="px-3 py-2 rounded-md bg-[#b2967d60] my-8">
+        <FilterSection></FilterSection>
       </div>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">

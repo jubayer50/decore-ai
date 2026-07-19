@@ -40,7 +40,13 @@ const ManageDesignPage = async () => {
                   <Table.Row key={design._id}>
                     <Table.Cell>{i + 1}</Table.Cell>
                     <Table.Cell>{design.interior_title}</Table.Cell>
-                    <Table.Cell>{design.createAt}</Table.Cell>
+                    <Table.Cell>
+                      {new Date(design.createAt).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </Table.Cell>
 
                     <Table.Cell className={"flex items-center gap-3.5"}>
                       <Link href={`/interior-designs/${design._id}`}>

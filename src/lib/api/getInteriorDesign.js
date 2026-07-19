@@ -1,7 +1,7 @@
 // get all interior design
-export const getInteriorDesigns = async () => {
+export const getInteriorDesigns = async (filters) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/interior-designs`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/interior-designs?${filters}`,
   );
   return res.json();
 };
