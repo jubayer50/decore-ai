@@ -62,7 +62,7 @@ export default function Navbar() {
                 key={route.path}
                 href={route.path}
                 className={`transition-colors font-medium ${
-                  isActive ? "text-[#b2967d]" : "text-slate-600"
+                  isActive ? "text-[#b2967d]" : "text-gray-900"
                 }`}
               >
                 {route.name}

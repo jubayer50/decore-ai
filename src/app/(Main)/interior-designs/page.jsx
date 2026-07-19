@@ -1,5 +1,6 @@
 import FilterSection from "@/Components/InteriorDesigns/FilterSection/FilterSection";
 import InteriorCard from "@/Components/InteriorDesigns/InteriorCard/InteriorCard";
+import PaginationDesign from "@/Components/InteriorDesigns/Pagination/Pagination";
 import { getInteriorDesigns } from "@/lib/api/getInteriorDesign";
 
 const InteriorDesignPage = async ({ searchParams }) => {
@@ -8,7 +9,7 @@ const InteriorDesignPage = async ({ searchParams }) => {
   const filtersQuery = new URLSearchParams(searchParam);
   const filters = filtersQuery.toString();
 
-  const interiorDesigns = await getInteriorDesigns(filters);
+  const { interiorDesigns, totalDesigns } = await getInteriorDesigns(filters);
 
   return (
     <div className="max-w-330 mx-auto my-10 px-3">
@@ -28,6 +29,10 @@ const InteriorDesignPage = async ({ searchParams }) => {
         {interiorDesigns.map((interior) => (
           <InteriorCard key={interior._id} interior={interior}></InteriorCard>
         ))}
+      </div>
+
+      <div className="mt-5">
+        <PaginationDesign totalDesigns={totalDesigns}></PaginationDesign>
       </div>
     </div>
   );
