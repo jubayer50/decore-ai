@@ -1,4 +1,5 @@
 import DeleteDesign from "@/Components/ManageDesigns/DeleteDesign/DeleteDesign";
+import EditDesign from "@/Components/ManageDesigns/EditDesign/EditDesign";
 import { userInteriorDesigns } from "@/lib/api/getInteriorDesign";
 import { auth } from "@/lib/auth";
 import { Button, Table } from "@heroui/react";
@@ -16,8 +17,12 @@ const ManageDesignPage = async () => {
   return (
     <div className="max-w-330 mx-auto px-3 my-10">
       <div>
-        <h2>manage-designs page</h2>
-        <p></p>
+        <h2 className="text-2xl font-bold">Manage Your Interior Designs</h2>
+        <p className="playfair text-lg leading-6 mt-1 max-w-200 ">
+          View, organize, and manage all your submitted interior design projects
+          in one place. Review your designs, access details, or remove projects
+          whenever needed.
+        </p>
       </div>
 
       <div className="mt-8">
@@ -44,14 +49,7 @@ const ManageDesignPage = async () => {
                         </Button>
                       </Link>
 
-                      <Button
-                        size="sm"
-                        className={
-                          "rounded-md bg-transparent border border-[#b2967d] text-black"
-                        }
-                      >
-                        Edit
-                      </Button>
+                      <EditDesign design={design}></EditDesign>
 
                       <DeleteDesign design={design}></DeleteDesign>
                     </Table.Cell>

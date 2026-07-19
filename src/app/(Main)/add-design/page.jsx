@@ -228,7 +228,7 @@ const AddDesignPage = () => {
                 alt="preview"
                 width={500}
                 height={300}
-                className="h-full w-full rounded-lg object-cover"
+                className="h-full w-full rounded-lg object-cover object-center"
               />
             ) : (
               <>
