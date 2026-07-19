@@ -5,9 +5,11 @@ import { postAiChat } from "@/lib/Action/aiChat";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const ChatComponent = ({ aiResponseByUserId }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const { data: session } = authClient.useSession();
@@ -35,6 +37,9 @@ const ChatComponent = ({ aiResponseByUserId }) => {
     try {
       // API Call
       const result = await postAiChat(aiData);
+      if (result) {
+        router.refresh();
+      }
     } catch (error) {
       console.error("Error:", error);
     } finally {
