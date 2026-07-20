@@ -6,7 +6,6 @@ import InteriorCard from "@/Components/InteriorDesigns/InteriorCard/InteriorCard
 
 const FeaturedInteriorDesigns = async () => {
   const { interiorDesigns: featuredDesigns } = await getInteriorDesigns();
-  console.log(featuredDesigns);
 
   return (
     <section className="max-w-330 mx-auto px-3 my-16 md:my-24">

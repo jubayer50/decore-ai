@@ -17,6 +17,6 @@ export const config = {
     "/interior-designs/:path",
     "/ai-chat/:path*",
     "/add-design",
-    "/manage-design",
+    "/manage-designs",
   ],
 };
