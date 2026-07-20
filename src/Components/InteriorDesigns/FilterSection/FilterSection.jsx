@@ -1,13 +1,15 @@
 "use client";
 
 import { ListBox, SearchField, Select } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const FilterSection = () => {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [priceSort, setPriceSort] = useState("");
+  const searchParam = useSearchParams();
+
+  const [search, setSearch] = useState(searchParam.get("search") || "");
+  const [category, setCategory] = useState(searchParam.get("category") || "");
+  const [priceSort, setPriceSort] = useState(searchParam.get("budget") || "");
 
   const router = useRouter();
 
