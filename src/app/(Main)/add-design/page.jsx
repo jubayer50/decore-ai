@@ -222,7 +222,7 @@ const AddDesignPage = () => {
             htmlFor="image"
             className="flex h-56 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#b2967d70] bg-[#b2967d10] transition hover:bg-[#b2967d20]"
           >
-            {imageUrl ? (
+            {imageUrl ?
               <Image
                 src={imageUrl}
                 alt="preview"
@@ -230,8 +230,7 @@ const AddDesignPage = () => {
                 height={300}
                 className="h-full w-full rounded-lg object-cover object-center"
               />
-            ) : (
-              <>
+            : <>
                 <LuArrowUpFromLine className="h-10 w-10 text-[#b2967d]" />
 
                 <p className="mt-3 font-medium">Click to upload design image</p>
@@ -240,7 +239,7 @@ const AddDesignPage = () => {
                   JPG, PNG or WEBP
                 </span>
               </>
-            )}
+            }
 
             <input
               id="image"

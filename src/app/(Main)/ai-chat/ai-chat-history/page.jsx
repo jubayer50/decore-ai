@@ -1,6 +1,7 @@
 import { getAiResponseByUserId } from "@/lib/api/getAiResponse";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import ReactMarkdown from "react-markdown";
 
 const AiChatHistoryPage = async () => {
   const session = await auth.api.getSession({
@@ -30,7 +31,9 @@ const AiChatHistoryPage = async () => {
                 <p className="mt-10 bg-gray-200 rounded-md px-4 py-1.5">
                   {response.question}
                 </p>
-                <p className="mt-4">{response.aiResponse}</p>
+                <div className="mt-6 whitespace-pre-wrap leading-7">
+                  <ReactMarkdown>{response.aiResponse}</ReactMarkdown>
+                </div>
               </div>
             ))}
           </div>

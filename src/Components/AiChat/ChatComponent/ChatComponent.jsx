@@ -1,4 +1,3 @@
-// components/ChatComponent.jsx
 "use client";
 
 import { postAiChat } from "@/lib/Action/aiChat";
@@ -6,42 +5,50 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 const ChatComponent = ({ aiResponseByUserId }) => {
   const router = useRouter();
+
   const [loading, setLoading] = useState(false);
+
+  const chatContainerRef = useRef(null);
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  // Form Submit Handler
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [aiResponseByUserId, loading]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.currentTarget;
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    const { question } = data;
+    const formData = new FormData(form);
+
+    const { question } = Object.fromEntries(formData.entries());
 
     if (!question.trim()) return;
 
     setLoading(true);
 
-    const aiData = {
-      userId: user?.id,
-      question,
-    };
-
     try {
-      // API Call
-      const result = await postAiChat(aiData);
+      const result = await postAiChat({
+        userId: user?.id,
+        question,
+      });
+
       if (result) {
         router.refresh();
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error(error);
     } finally {
       setLoading(false);
       form.reset();
@@ -50,78 +57,84 @@ const ChatComponent = ({ aiResponseByUserId }) => {
 
   return (
     <div className="max-w-3xl mx-auto py-8">
-      <div className="bg-white rounded-lg shadow border overflow-hidden">
+      <div className="bg-white rounded-xl border shadow overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-4">
-          <div className="bg-primary">
-            <h2 className="text-2xl font-bold">AI Chat Assistant</h2>
-            <p className="playfair opacity-80 text-lg">
-              Ask me anything about interior design
-            </p>
-          </div>
-
+        <div className="flex items-center justify-between p-5 border-b">
           <div>
-            <Link href={"/ai-chat/ai-chat-history"}>
-              <Button
-                size="sm"
-                className={"rounded-md bg-gray-200 text-black font-medium"}
-              >
-                History
-              </Button>
-            </Link>
+            <h2 className="text-2xl font-bold">AI Chat Assistant</h2>
+
+            <p className="text-gray-500">Ask anything about Interior Design</p>
           </div>
+
+          <Link href="/ai-chat/ai-chat-history">
+            <Button className="rounded-lg bg-gray-200 text-black">
+              History
+            </Button>
+          </Link>
         </div>
 
-        {/* Messages Area */}
-        <div className="h-[70vh] overflow-y-auto p-4 space-y-3 bg-gray-50">
-          {aiResponseByUserId.length === 0 && (
-            <div className="text-center text-gray-500 mt-32">
-              <p>Start a conversation!</p>
-              <p className="text-sm">Ask about interior design ideas</p>
-            </div>
-          )}
-
-          {loading ? (
-            <div className="flex justify-start">
-              <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg rounded-bl-none">
-                <p className="text-sm">Thinking...</p>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-3 p-2">
-              {aiResponseByUserId.map((response) => (
-                <div key={response._id}>
-                  <p className="bg-gray-200 px-3 py-1.5 rounded-md mt-10">
-                    {response.question}
-                  </p>
-                  <p className="mt-4">{response.aiResponse}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Input Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="p-4 border-t dark:border-gray-700"
+        {/* Messages */}
+        <div
+          ref={chatContainerRef}
+          className="h-[70vh] overflow-y-auto bg-gray-50 p-5"
         >
-          <div className="flex gap-2">
-            <input
-              type="text"
-              name="question"
-              placeholder="Type your question..."
-              className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              disabled={loading}
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-2 bg-primary bg-[#b2967d] text-white rounded-lg disabled:opacity-50 cursor-pointer transition-colors"
-            >
-              {loading ? "Sending..." : "Send"}
-            </button>
+          {aiResponseByUserId.length === 0 && (
+            <div className="h-full flex items-center justify-center text-gray-500">
+              Start a conversation...
+            </div>
+          )}
+
+          <div className="space-y-8">
+            {aiResponseByUserId.map((response) => (
+              <div key={response._id}>
+                {/* User */}
+                <div className="flex justify-end">
+                  <div className="bg-[#b2967d] text-white px-4 py-2 rounded-xl max-w-xl">
+                    {response.question}
+                  </div>
+                </div>
+
+                {/* AI */}
+                <div className="flex justify-start mt-4">
+                  <div className="bg-white border rounded-xl p-4 shadow-sm max-w-full">
+                    <div className="mb-2 font-semibold text-[#b2967d]">
+                      🤖 DecoraAI Assistant
+                    </div>
+
+                    <div className="prose max-w-none whitespace-pre-wrap">
+                      <ReactMarkdown>{response.aiResponse}</ReactMarkdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-white border rounded-xl p-4 shadow-sm">
+                  🤖 Thinking...
+                </div>
+              </div>
+            )}
           </div>
+        </div>
+
+        {/* Input */}
+        <form onSubmit={handleSubmit} className="border-t p-4 flex gap-3">
+          <input
+            type="text"
+            name="question"
+            placeholder="Type your question..."
+            className="flex-1 border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#b2967d]"
+            disabled={loading}
+          />
+
+          <button
+            disabled={loading}
+            className="bg-[#b2967d] text-white px-6 rounded-lg"
+          >
+            {loading ? "Sending..." : "Send"}
+          </button>
         </form>
       </div>
     </div>
